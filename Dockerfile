@@ -1,12 +1,11 @@
 FROM ubuntu:16.04
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu/ xenial multiverse" > /etc/apt/sources.list.d/xenial-multiverse.list && \
-    echo "deb-src http://archive.ubuntu.com/ubuntu/ xenial multiverse" >> /etc/apt/sources.list.d/xenial-multiverse.list
+RUN echo "deb http://archive.ubuntu.com/ubuntu/ xenial multiverse" > /etc/apt/sources.list.d/xenial-multiverse.list
 RUN mkdir -p /srv/build
-COPY build/nginx-rtmp-module /srv/build/nginx-rtmp-module
-COPY build/FFmpeg /srv/build/FFmpeg
-COPY build/x264 /srv/build/x264
-COPY build/l-smash /srv/build/l-smash
+ADD build/nginx-rtmp-module /srv/build/nginx-rtmp-module
+ADD build/FFmpeg /srv/build/FFmpeg
+ADD build/x264 /srv/build/x264
+ADD build/l-smash /srv/build/l-smash
 RUN apt-get clean all && apt-get update
 RUN apt-get install -y wget \
     gcc make \
