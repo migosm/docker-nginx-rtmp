@@ -6,4 +6,4 @@ git clone https://github.com/FFmpeg/FFmpeg.git  build/FFmpeg
 pushd build/FFmpeg
   git checkout release/3.1
 popd
-sudo docker build --no-cache=true -t migosm/docker-nginx-rtmp .
+sudo docker build --no-cache=false -t migosm/docker-nginx-rtmp .
