@@ -6,6 +6,7 @@ RUN mkdir -p /srv/build
 COPY build/nginx-rtmp-module /srv/build/nginx-rtmp-module
 COPY build/FFmpeg /srv/build/FFmpeg
 COPY build/x264 /srv/build/x264
+COPY build/l-smash /srv/build/l-smash
 RUN apt-get clean all && apt-get update
 RUN apt-get install -y wget \
     gcc make \
@@ -19,6 +20,11 @@ RUN apt-get install -y wget \
     libvpx-dev \
     libwebp-dev \
     libx265-dev
+RUN cd /srv/build/l-smash && \
+    ./configure --prefix=/usr --enable-shared && \
+    make -j4 && \
+    make -j4 install && \
+    ldconfig
 RUN cd /srv/build && \
     wget http://nginx.org/download/nginx-1.10.1.tar.gz && \
     tar xzvf nginx-1.10.1.tar.gz
