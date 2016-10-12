@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir -p build
 git clone git://github.com/arut/nginx-rtmp-module.git build/
 git clone https://github.com/FFmpeg/FFmpeg.git  build/
 pushd build/FFmpeg
