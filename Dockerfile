@@ -3,7 +3,7 @@ FROM debian:jessie
 RUN mkdir -p /srv/build
 COPY build/nginx-rtmp-module /srv/build/nginx-rtmp-module
 RUN apt-get clean all && apt-get update
-RUN apt-get install -y wget gcc make libpcre3-dev libpcre3 libssl-dev
+RUN apt-get install -y wget gcc make libpcre3-dev libpcre3 libssl-dev yasm
 RUN cd /srv/build && \
     wget http://nginx.org/download/nginx-1.10.1.tar.gz && \
     tar xzvf nginx-1.10.1.tar.gz
