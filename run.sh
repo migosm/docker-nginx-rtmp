@@ -7,7 +7,7 @@ case $1 in
       -p 1935:1935 \
       --name=nr1 \
       -v /opt/data:/data \
-      -v /opt/configs/nginx:/etc/nginx
+      -v /opt/configs/nginx:/etc/nginx \
       migosm/docker-nginx-rtmp \
       bash
   ;;
