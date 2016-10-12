@@ -46,12 +46,6 @@ RUN cd /srv/build/x264 && \
     --enable-static --enable-shared && \
     make -j4 && \
     make -j4 install
-RUN cd /srv/build/x265 && \
-    ./configure \
-    --prefix=/usr \
-    --enable-static --enable-shared && \
-    make -j4 && \
-    make -j4 install
 RUN cd /srv/build/FFmpeg && \
     ./configure \
     --prefix=/usr \
