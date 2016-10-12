@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 RUN mkdir -p /srv/build
-COPY nginx-rtmp-module /srv/build/nginx-rtmp-module
+COPY build/nginx-rtmp-module /srv/build/nginx-rtmp-module
 RUN apt-get clean all && apt-get update
 RUN apt-get install -y wget gcc make libpcre3-dev libpcre3 libssl-dev
 RUN cd /srv/build && \
@@ -19,7 +19,7 @@ RUN cd /srv/build/nginx-1.10.1 && \
     --with-http_ssl_module --add-module=/srv/build/nginx-rtmp-module && \
     make -j4 && \
     make -j4 install
-COPY FFmpeg /srv/build/FFmpeg
+COPY build/FFmpeg /srv/build/FFmpeg
 RUN cd /srv/build/FFmpeg && \
     ./configure \
     --prefix=/usr \
@@ -35,4 +35,4 @@ RUN cd /srv/build/FFmpeg && \
     --enable-libzimg \
     --enable-openssl && \
     make -j4 && \
-    make -j4 install 
+    make -j4 install
