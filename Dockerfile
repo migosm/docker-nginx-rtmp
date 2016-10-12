@@ -3,7 +3,19 @@ FROM debian:jessie
 RUN mkdir -p /srv/build
 COPY build/nginx-rtmp-module /srv/build/nginx-rtmp-module
 RUN apt-get clean all && apt-get update
-RUN apt-get install -y wget gcc make libpcre3-dev libpcre3 libssl-dev yasm
+RUN apt-get install -y wget \
+    gcc make \
+    libpcre3-dev \
+    libpcre3 libssl-dev \
+    yasm \
+    libfaac-dev \
+    libmp3lame-dev \
+    librtmp-dev \
+    libspeex-dev \
+    libvpx-dev \
+    libwebp-dev \
+    libx264-dev \
+    libx265-dev
 RUN cd /srv/build && \
     wget http://nginx.org/download/nginx-1.10.1.tar.gz && \
     tar xzvf nginx-1.10.1.tar.gz
@@ -33,7 +45,6 @@ RUN cd /srv/build/FFmpeg && \
     --enable-libx264 \
     --enable-libx265 \
     --enable-libwebp \
-    --enable-libzimg \
     --enable-openssl && \
     make -j4 && \
     make -j4 install
