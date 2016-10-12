@@ -23,8 +23,9 @@ COPY build/FFmpeg /srv/build/FFmpeg
 RUN cd /srv/build/FFmpeg && \
     ./configure \
     --prefix=/usr \
-    --enable-libfaac \
     --enable-nonfree \
+    --enable-gpl \
+    --enable-libfaac \
     --enable-libmp3lame \
     --enable-libspeex \
     --enable-libvpx \
