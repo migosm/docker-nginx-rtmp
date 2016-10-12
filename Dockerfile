@@ -1,4 +1,4 @@
-FROM debian:testing
+FROM ubuntu:16.04
 
 RUN mkdir -p /srv/build
 COPY build/nginx-rtmp-module /srv/build/nginx-rtmp-module
