@@ -1,7 +1,11 @@
 FROM ubuntu:16.04
 
+RUN echo "deb http://archive.ubuntu.com/ubuntu/ xenial multiverse" > /etc/apt/sources.list.d/xenial-multiverse.list && \
+    echo "deb-src http://archive.ubuntu.com/ubuntu/ xenial multiverse" >> /etc/apt/sources.list.d/xenial-multiverse.list
 RUN mkdir -p /srv/build
 COPY build/nginx-rtmp-module /srv/build/nginx-rtmp-module
+COPY build/FFmpeg /srv/build/FFmpeg
+COPY build/x264 /srv/build/x264
 RUN apt-get clean all && apt-get update
 RUN apt-get install -y wget \
     gcc make \
@@ -14,7 +18,6 @@ RUN apt-get install -y wget \
     libspeex-dev \
     libvpx-dev \
     libwebp-dev \
-    libx264-dev \
     libx265-dev
 RUN cd /srv/build && \
     wget http://nginx.org/download/nginx-1.10.1.tar.gz && \
@@ -31,7 +34,18 @@ RUN cd /srv/build/nginx-1.10.1 && \
     --with-http_ssl_module --add-module=/srv/build/nginx-rtmp-module && \
     make -j4 && \
     make -j4 install
-COPY build/FFmpeg /srv/build/FFmpeg
+RUN cd /srv/build/x264 && \
+    ./configure \
+    --prefix=/usr \
+    --enable-static --enable-shared && \
+    make -j4 && \
+    make -j4 install
+RUN cd /srv/build/x265 && \
+    ./configure \
+    --prefix=/usr \
+    --enable-static --enable-shared && \
+    make -j4 && \
+    make -j4 install
 RUN cd /srv/build/FFmpeg && \
     ./configure \
     --prefix=/usr \
