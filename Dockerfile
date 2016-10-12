@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:testing
 
 RUN mkdir -p /srv/build
 COPY build/nginx-rtmp-module /srv/build/nginx-rtmp-module
