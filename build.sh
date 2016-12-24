@@ -8,4 +8,4 @@ git clone https://github.com/l-smash/l-smash.git build/l-smash
 pushd build/FFmpeg
   git checkout release/3.1
 popd
-sudo docker build --no-cache=true -t migosm/docker-nginx-rtmp .
+docker build --no-cache=true -t migosm/docker-nginx-rtmp -f Dockerfile.nginx .
