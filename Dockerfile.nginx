@@ -32,3 +32,4 @@ RUN cd /srv/build/nginx-1.10.2 && \
     make -j4 && \
     make install
 ADD run.sh /
+RUN chmod +x /run.sh
